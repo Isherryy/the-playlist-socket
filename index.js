@@ -1,10 +1,13 @@
 const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer();
+require("dotenv").config();
 
+const PORT = process.env.PORT;
+const LISTING = process.env.SOCKET_LISTNER_API_URL;
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: LISTING,
     methods: ["GET", "POST"],
   },
 });
@@ -18,7 +21,6 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
