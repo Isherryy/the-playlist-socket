@@ -5,9 +5,10 @@ require("dotenv").config();
 
 const PORT = process.env.PORT;
 const LISTING = process.env.SOCKET_LISTNER_API_URL;
+
 const io = socketIo(server, {
   cors: {
-    origin: LISTING,
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
@@ -16,8 +17,8 @@ io.on("connection", (socket) => {
   socket.on("addSongToPlaylistApi", (data) => {
     io.emit("addSongToPlaylistApiResponse", data);
   });
-  socket.on("message", (data) => {
-    console.log("message", data);
+  socket.on("votingRequest", (data) => {
+    io.emit("votingResponse", data);
   });
 });
 
