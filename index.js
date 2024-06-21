@@ -20,6 +20,60 @@ io.on("connection", (socket) => {
   socket.on("votingRequest", (data) => {
     io.emit("votingResponse", data);
   });
+  socket.on("acceptedRejectStreamReq", (data) => {
+    io.emit("acceptedRejectStreamRes", data);
+  });
+  socket.on("sendReqToMasterApi", (data) => {
+    io.emit("sendReqToMasterRes", data);
+  });
+  socket.on("themeChangeByMasterApi", (data) => {
+    io.emit("themeChangeByMasterRes", data);
+  });
+  socket.on("limitChangeByMasterApi", (data) => {
+    io.emit("limitChangeByMasterRes", data);
+  });
+  socket.on("advanceTheQueueApi", (data) => {
+    io.emit("advanceTheQueueRes", data);
+  });
+  socket.on("startIntroSecondsRequest", (data) => {
+    io.emit("startIntroSecondsResponse", data);
+  });
+  socket.on("insertSongIntoPlaylistRequest", (data) => {
+    io.emit("insertSongIntoPlaylistResponse", data);
+  });
+  socket.on("emptyPlaylistRequest", (data) => {
+    io.emit("emptyPlaylistResponse", data);
+  });
+  socket.on("RemoveSongFromPlaylistRequest", (data) => {
+    io.emit("RemoveSongFromPlaylistResponse", data);
+  });
+  socket.on("voteCastingRequest", (data) => {
+    io.emit("voteCastingResponse", data);
+  });
+  socket.on("undoActionRequest", (data) => {
+    io.emit("undoActionResponse", data);
+  });
+  socket.on("songAddByCustomerReq", (data) => {
+    io.emit("songAddByCustomerRes", data);
+  });
+  socket.on("bufferTimeReq", (data) => {
+    io.emit("bufferTimeRes", data);
+  });
+  socket.on("undoFavReq", (data) => {
+    io.emit("undoFavRes", data);
+  });
+  socket.on("wallPlayerViewReq", (data) => {
+    io.emit("wallPlayerViewRes", data);
+  });
+});
+const votingRoom = io.of("/voting");
+votingRoom.on("connection", (socket) => {
+  socket.join("voteRoom");
+
+  socket.on("voteCastingRequest", (data) => {
+    // Emit to clients in the 'voteRoom' only
+    votingRoom.to("voteRoom").emit("voteCastingResponse", data);
+  });
 });
 
 server.listen(PORT, () => {
