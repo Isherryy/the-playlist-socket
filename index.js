@@ -65,6 +65,9 @@ io.on("connection", (socket) => {
   socket.on("wallPlayerViewReq", (data) => {
     io.emit("wallPlayerViewRes", data);
   });
+  socket.on("handleDragReq", (data) => {
+    io.emit("handleDragRes", data);
+  });
 });
 const votingRoom = io.of("/voting");
 votingRoom.on("connection", (socket) => {
