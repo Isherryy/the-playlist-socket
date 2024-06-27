@@ -22,9 +22,11 @@ io.on("connection", (socket) => {
   });
   socket.on("acceptedRejectStreamReq", (data) => {
     io.emit("acceptedRejectStreamRes", data);
+    io.emit("checkActiveStream", data);
   });
   socket.on("sendReqToMasterApi", (data) => {
     io.emit("sendReqToMasterRes", data);
+    io.emit("checkActiveStream", data);
   });
   socket.on("themeChangeByMasterApi", (data) => {
     io.emit("themeChangeByMasterRes", data);
@@ -63,7 +65,8 @@ io.on("connection", (socket) => {
     io.emit("undoFavRes", data);
   });
   socket.on("wallPlayerViewReq", (data) => {
-    io.emit("wallPlayerViewRes", data);
+    io.emit("wallViewRes", data);
+    io.emit("playerViewRes", data);
   });
   socket.on("wallViewJumbotronRequest", (data) => {
     io.emit("wallViewJumbotronResponse", data);
