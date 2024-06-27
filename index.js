@@ -79,7 +79,6 @@ votingRoom.on("connection", (socket) => {
   socket.join("voteRoom");
 
   socket.on("voteCastingRequest", (data) => {
-    // Emit to clients in the 'voteRoom' only
     votingRoom.to("voteRoom").emit("voteCastingResponse", data);
   });
 });
