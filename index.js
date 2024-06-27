@@ -65,6 +65,9 @@ io.on("connection", (socket) => {
   socket.on("wallPlayerViewReq", (data) => {
     io.emit("wallPlayerViewRes", data);
   });
+  socket.on("wallViewJumbotronRequest", (data) => {
+    io.emit("wallViewJumbotronResponse", data);
+  });
   socket.on("handleDragReq", (data) => {
     io.emit("handleDragRes", data);
   });
