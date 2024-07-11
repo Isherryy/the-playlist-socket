@@ -2,9 +2,7 @@ const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer();
 require("dotenv").config();
-
 const PORT = process.env.PORT;
-
 const io = socketIo(server, {
   cors: {
     origin: "*",
