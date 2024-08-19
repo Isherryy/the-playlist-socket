@@ -4,6 +4,13 @@ const server = http.createServer();
 require("dotenv").config();
 const PORT = process.env.PORT;
 const io = socketIo(server, {
+  reconnection: true, // Enable reconnection
+  reconnectionAttempts: 5, // Number of reconnection attempts
+  reconnectionDelay: 1000, // Delay between reconnections in milliseconds
+  reconnectionDelayMax: 5000, // Maximum delay between reconnections
+  timeout: 20000, // Connection timeout before reconnection
+  autoConnect: true, // Automatically connect when the socket is created
+  // transports: ["websocket"], // Use WebSocket transport only
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
