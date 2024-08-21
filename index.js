@@ -19,64 +19,64 @@ const io = socketIo(server, {
 
 io.on("connection", (socket) => {
   socket.on("addSongToPlaylistApi", (data) => {
-    socket.broadcast.emit("addSongToPlaylistApiResponse", data);
+    io.emit("addSongToPlaylistApiResponse", data);
   });
   socket.on("votingRequest", (data) => {
-    socket.broadcast.emit("votingResponse", data);
+    io.emit("votingResponse", data);
   });
   socket.on("acceptedRejectStreamReq", (data) => {
-    socket.broadcast.emit("acceptedRejectStreamRes", data);
-    socket.broadcast.emit("checkActiveStream", data);
+    io.emit("acceptedRejectStreamRes", data);
+    io.emit("checkActiveStream", data);
   });
   socket.on("sendReqToMasterApi", (data) => {
-    socket.broadcast.emit("sendReqToMasterRes", data);
-    socket.broadcast.emit("checkActiveStream", data);
+    io.emit("sendReqToMasterRes", data);
+    io.emit("checkActiveStream", data);
   });
   socket.on("themeChangeByMasterApi", (data) => {
-    socket.broadcast.emit("themeChangeByMasterRes", data);
+    io.emit("themeChangeByMasterRes", data);
   });
   socket.on("limitChangeByMasterApi", (data) => {
-    socket.broadcast.emit("limitChangeByMasterRes", data);
+    io.emit("limitChangeByMasterRes", data);
   });
   socket.on("advanceTheQueueApi", (data) => {
-    socket.broadcast.emit("advanceTheQueueRes", data);
+    io.emit("advanceTheQueueRes", data);
   });
   socket.on("startIntroSecondsRequest", (data) => {
-    socket.broadcast.emit("startIntroSecondsResponse", data);
+    io.emit("startIntroSecondsResponse", data);
   });
   socket.on("insertSongIntoPlaylistRequest", (data) => {
-    socket.broadcast.emit("insertSongIntoPlaylistResponse", data);
+    io.emit("insertSongIntoPlaylistResponse", data);
   });
   socket.on("emptyPlaylistRequest", (data) => {
-    socket.broadcast.emit("emptyPlaylistResponse", data);
+    io.emit("emptyPlaylistResponse", data);
   });
   socket.on("RemoveSongFromPlaylistRequest", (data) => {
-    socket.broadcast.emit("RemoveSongFromPlaylistResponse", data);
+    io.emit("RemoveSongFromPlaylistResponse", data);
   });
   socket.on("voteCastingRequest", (data) => {
-    socket.broadcast.emit("voteCastingResponse", data);
+    io.emit("voteCastingResponse", data);
   });
   socket.on("undoActionRequest", (data) => {
-    socket.broadcast.emit("undoActionResponse", data);
+    io.emit("undoActionResponse", data);
   });
   socket.on("songAddByCustomerReq", (data) => {
-    socket.broadcast.emit("songAddByCustomerRes", data);
+    io.emit("songAddByCustomerRes", data);
   });
   socket.on("bufferTimeReq", (data) => {
-    socket.broadcast.emit("bufferTimeRes", data);
+    io.emit("bufferTimeRes", data);
   });
   socket.on("undoFavReq", (data) => {
-    socket.broadcast.emit("undoFavRes", data);
+    io.emit("undoFavRes", data);
   });
   socket.on("wallPlayerViewReq", (data) => {
-    socket.broadcast.emit("wallViewRes", data);
-    socket.broadcast.emit("playerViewRes", data);
+    io.emit("wallViewRes", data);
+    io.emit("playerViewRes", data);
   });
   socket.on("wallViewJumbotronRequest", (data) => {
-    socket.broadcast.emit("wallViewJumbotronResponse", data);
+    io.emit("wallViewJumbotronResponse", data);
   });
   socket.on("handleDragReq", (data) => {
-    socket.broadcast.emit("handleDragRes", data);
+    io.emit("handleDragRes", data);
   });
 });
 const votingRoom = io.of("/voting");
