@@ -78,6 +78,9 @@ io.on("connection", (socket) => {
   socket.on("handleDragReq", (data) => {
     io.emit("handleDragRes", data);
   });
+  socket.on("favoriteSongReq", (data) => {
+    io.emit("favoriteSongRes", data);
+  });
 });
 const votingRoom = io.of("/voting");
 votingRoom.on("connection", (socket) => {
