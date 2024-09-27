@@ -81,6 +81,9 @@ io.on("connection", (socket) => {
   socket.on("favoriteSongReq", (data) => {
     io.emit("favoriteSongRes", data);
   });
+  socket.on("remainingTimeReq", (data) => {
+    io.emit("remainingTimeRes", data);
+  });
 });
 const votingRoom = io.of("/voting");
 votingRoom.on("connection", (socket) => {
