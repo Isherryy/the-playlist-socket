@@ -84,6 +84,72 @@ io.on("connection", (socket) => {
   socket.on("remainingTimeReq", (data) => {
     io.emit("remainingTimeRes", data);
   });
+  socket.on("addSongToPlaylistApi-v2", (data) => {
+    io.emit("addSongToPlaylistApiResponse-v2", data);
+  });
+  socket.on("votingRequest-v2", (data) => {
+    io.emit("votingResponse-v2", data);
+  });
+  socket.on("acceptedRejectStreamReq-v2", (data) => {
+    io.emit("acceptedRejectStreamRes-v2", data);
+    io.emit("checkActiveStream-v2", data);
+  });
+  socket.on("sendReqToMasterApi-v2", (data) => {
+    io.emit("sendReqToMasterRes-v2", data);
+    io.emit("checkActiveStream-v2", data);
+  });
+  socket.on("themeChangeByMasterApi-v2", (data) => {
+    io.emit("themeChangeByMasterRes-v2", data);
+  });
+  socket.on("limitChangeByMasterApi-v2", (data) => {
+    io.emit("limitChangeByMasterRes-v2", data);
+  });
+  socket.on("advanceTheQueueApi-v2", (data) => {
+    io.emit("advanceTheQueueRes-v2", data);
+  });
+  socket.on("startIntroSecondsRequest-v2", (data) => {
+    io.emit("startIntroSecondsResponse-v2", data);
+  });
+  socket.on("insertSongIntoPlaylistRequest-v2", (data) => {
+    io.emit("insertSongIntoPlaylistResponse-v2", data);
+  });
+  socket.on("emptyPlaylistRequest-v2", (data) => {
+    io.emit("emptyPlaylistResponse-v2", data);
+  });
+  socket.on("RemoveSongFromPlaylistRequest-v2", (data) => {
+    io.emit("RemoveSongFromPlaylistResponse-v2", data);
+  });
+  socket.on("voteCastingRequest-v2", (data) => {
+    io.emit("voteCastingResponse-v2", data);
+  });
+  socket.on("undoActionRequest-v2", (data) => {
+    io.emit("undoActionResponse-v2", data);
+  });
+  socket.on("songAddByCustomerReq-v2", (data) => {
+    io.emit("songAddByCustomerRes-v2", data);
+  });
+  socket.on("bufferTimeReq-v2", (data) => {
+    io.emit("bufferTimeRes-v2", data);
+  });
+  socket.on("undoFavReq-v2", (data) => {
+    io.emit("undoFavRes-v2", data);
+  });
+  socket.on("wallPlayerViewReq-v2", (data) => {
+    io.emit("wallViewRes-v2", data);
+    io.emit("playerViewRes-v2", data);
+  });
+  socket.on("wallViewJumbotronRequest-v2", (data) => {
+    io.emit("wallViewJumbotronResponse-v2", data);
+  });
+  socket.on("handleDragReq-v2", (data) => {
+    io.emit("handleDragRes-v2", data);
+  });
+  socket.on("favoriteSongReq-v2", (data) => {
+    io.emit("favoriteSongRes-v2", data);
+  });
+  socket.on("remainingTimeReq-v2", (data) => {
+    io.emit("remainingTimeRes-v2", data);
+  });
 });
 const votingRoom = io.of("/voting");
 votingRoom.on("connection", (socket) => {
