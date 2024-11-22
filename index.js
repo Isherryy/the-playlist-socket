@@ -10,7 +10,7 @@ const io = socketIo(server, {
   reconnectionDelayMax: 5000, // Maximum delay between reconnections
   timeout: 20000, // Connection timeout before reconnection
   autoConnect: true, // Automatically connect when the socket is created
-  // transports: ["websocket"], // Use WebSocket transport only
+
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
@@ -20,6 +20,10 @@ const io = socketIo(server, {
 });
 
 io.on("connection", (socket) => {
+  // Send heartbeat signal every 25 seconds
+  const heartbeatInterval = setInterval(() => {
+    socket.emit("heartbeat", { message: "ping" });
+  }, 5000); // 25 seconds
   socket.on("addSongToPlaylistApi", (data) => {
     io.emit("addSongToPlaylistApiResponse", data);
   });
@@ -151,6 +155,10 @@ io.on("connection", (socket) => {
   });
   socket.on("remainingTimeReq-v2", (data) => {
     io.emit("remainingTimeRes-v2", data);
+  });
+  socket.on("disconnect", () => {
+    console.log("A client disconnected:", socket.id);
+    clearInterval(heartbeatInterval); // Clear the interval to avoid memory leaks
   });
 });
 const votingRoom = io.of("/voting");
