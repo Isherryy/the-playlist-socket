@@ -5,7 +5,7 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 const io = socketIo(server, {
   reconnection: true, // Enable reconnection
-  reconnectionAttempts: 5, // Number of reconnection attempts
+  reconnectionAttempts: Infinity, // Number of reconnection attempts
   reconnectionDelay: 1000, // Delay between reconnections in milliseconds
   reconnectionDelayMax: 5000, // Maximum delay between reconnections
   timeout: 20000, // Connection timeout before reconnection
@@ -15,6 +15,8 @@ const io = socketIo(server, {
     origin: "*",
     methods: ["GET", "POST"],
   },
+  pingTimeout: 30000, // Wait 30 seconds for a pong response
+  pingInterval: 10000, // Send pings every 10 seconds
 });
 
 io.on("connection", (socket) => {
