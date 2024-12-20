@@ -156,6 +156,10 @@ io.on("connection", (socket) => {
   socket.on("remainingTimeReq-v2", (data) => {
     io.emit("remainingTimeRes-v2", data);
   });
+
+  socket.on("removeReq-v2", (data) => {
+    io.emit("removeRes-v2", data);
+  });
   socket.on("disconnect", () => {
     console.log("A client disconnected:", socket.id);
     clearInterval(heartbeatInterval); // Clear the interval to avoid memory leaks
