@@ -150,6 +150,9 @@ io.on("connection", (socket) => {
   socket.on("handleDragReq-v2", (data) => {
     io.emit("handleDragRes-v2", data);
   });
+  socket.on("changeSongStatusReq", (data) => {
+    io.emit("changeSongStatusRes", data);
+  });
   socket.on("favoriteSongReq-v2", (data) => {
     io.emit("favoriteSongRes-v2", data);
   });
